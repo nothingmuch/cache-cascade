@@ -65,7 +65,7 @@ sub set {
 	if ( $self->set_deep ) {
 		$_->set($key, $value) for @{ $self->caches };
 	} else {
-		$self->caches->[0]->set($key, $value);
+		( $self->caches->[0] || return )->set($key, $value);
 	}
 }
 
