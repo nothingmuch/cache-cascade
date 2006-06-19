@@ -87,7 +87,7 @@ semantics.
 
 	Cache::Cascade->new(
 		caches => [
-			Cache::MemoryCache->new(...),
+			Cache::Memory->new(...),
 			Cache::FastMmap->new(...),
 			Cache::Memcached->new(...),
 		],
@@ -176,6 +176,10 @@ until their own MemoryCache is expired.
 Thus, if cache invalidation is important in your algorithm (data changes) do
 not use a cascade. If stale hits are permitted, or the cache is for non
 changing data then you should use a cascade.
+
+=head1 SEE ALSO
+
+L<Cache>
 
 =cut
 
