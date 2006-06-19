@@ -54,11 +54,6 @@ sub get_and_float_result {
 	return;
 }
 
-sub remove {
-	my ( $self, $key ) = @_;
-	$_->remove($key) for @{ $self->caches };
-}
-
 sub set {
 	my ( $self, $key, $value, @extra ) = @_;
 
@@ -68,6 +63,47 @@ sub set {
 		( $self->caches->[0] || return )->set($key, $value, @extra);
 	}
 }
+
+
+use tt ( methods => [qw/size count/] );
+[% FOREACH method IN methods %]
+sub [% method %] {
+	my $self = shift;
+	return $self->_sum_[% method %]( @{ $self->caches } )
+}
+
+sub _sum_[% method %] {
+	my ( $self, $head, @tail ) = @_;
+	$head || return 0;
+	$head->[% method %] + $self->_sum_[% method %]( @tail );
+}
+[% END %]
+no tt;
+
+use tt ( methods => [qw/remove clear set_load_callback set_validate_callback/] );
+[% FOREACH method IN methods %]
+sub [% method %] {
+	my ( $self, @args ) = @_;
+	$_->[% method %]( @args ) for @{ $self->caches };
+}
+[% END %]
+no tt;
+
+use tt ( methods => [qw/entry exists load_callback validate_callback/] );
+[% FOREACH method IN methods %]
+sub [% method %] {
+	my ( $self, @args ) = @_;
+
+	foreach my $cache ( @{ $self->caches } ) {
+		if ( my $res = $cache->[% method %]( @args ) ) {
+			return $res;
+		}
+	}
+
+	return;
+}
+[% END %]
+no tt;
 
 
 __PACKAGE__;
@@ -132,7 +168,7 @@ Defaults to false. See C<get>.
 
 =back
 
-=head1 OVERRIDDEN METHODS
+=head1 METHODS
 
 =over 4
 
@@ -153,13 +189,37 @@ the first cache object in the list.
 
 =item remove $key
 
-This method will delegate C<remove> on every cache object in the list.
+=item clear
 
-=back
+These methods will delegate C<remove> on every cache object in the list.
 
-=head1 METHODS
+=item entry $key
 
-=item
+=item exists $key
+
+Returns the first match.
+
+=item clear
+
+=item size
+
+=item count
+
+These two methods are sum based aggregates.
+
+=item validate_callback
+
+=item load_callback
+
+These two methods return the first callback they found.
+
+=item set_load_callback
+
+=item set_validate_callback
+
+These two methods set the callback for all the caches.
+
+=item 
 
 =item get_and_float_result $key, @caches
 
