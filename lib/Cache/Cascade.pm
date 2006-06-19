@@ -60,12 +60,12 @@ sub remove {
 }
 
 sub set {
-	my ( $self, $key, $value ) = @_;
+	my ( $self, $key, $value, @extra ) = @_;
 
 	if ( $self->set_deep ) {
-		$_->set($key, $value) for @{ $self->caches };
+		$_->set($key, $value, @extra) for @{ $self->caches };
 	} else {
-		( $self->caches->[0] || return )->set($key, $value);
+		( $self->caches->[0] || return )->set($key, $value, @extra);
 	}
 }
 
