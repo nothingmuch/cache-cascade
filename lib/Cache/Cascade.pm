@@ -243,6 +243,12 @@ changing data then you should use a cascade.
 
 L<Cache>
 
+=head1 VERSION CONTROL
+
+This module is maintained using Darcs. You can get the latest version from
+L<http://nothingmuch.woobling.org/Cache-Cascade/>, and use C<darcs send> to
+commit changes.
+
 =cut
 
 
