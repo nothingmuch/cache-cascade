@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 21;
+use Test::More tests => 26;
 
 use ok "Cache::Cascade";
 
@@ -59,4 +59,13 @@ is( $caches[0]->get("foo"), undef, "value not yet floated" );
 is( $cache->get("foo"), "camel", "get from bottom" );
 
 is( $_->get("foo"), "camel", "value floated" ) for @caches;
+
+
+$caches[-1]->set( bar => "" );
+
+is( $caches[0]->get("bar"), undef, "value not yet floated" );
+
+is( $cache->get("bar"), "", "get from bottom" );
+
+is( $_->get("bar"), "", "value floated" ) for @caches;
 

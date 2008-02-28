@@ -44,10 +44,10 @@ sub get_and_float_result {
 	my ( $self, $key, $head, @tail ) = @_;
 	$head || return;
 
-	if ( my $res = $head->get($key) ) {
+	if ( defined( my $res = $head->get($key) ) ) {
 		return $res;
 	} elsif ( @tail ) {
-		if ( my $res = $self->get_and_float_result( $key, @tail ) ) {
+		if ( defined( my $res = $self->get_and_float_result( $key, @tail ) ) ) {
 			$head->set( $key, $res );
 			return $res;
 		}
