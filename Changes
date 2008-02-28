@@ -1,3 +1,6 @@
+0.03
+	- Unbreak release
+
 0.02
 	- Fix handling of false but defined values in get_and_float_result thanks to Stephen Caldwell
 
