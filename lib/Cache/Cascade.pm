@@ -5,7 +5,7 @@ use Moose;
 
 use Carp qw/croak/;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 has caches => (
 	isa => "ArrayRef",
