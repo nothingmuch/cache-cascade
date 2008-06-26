@@ -116,6 +116,8 @@ CODE
 	}
 }
 
+__PACKAGE__->meta->make_immutable;
+
 __PACKAGE__;
 
 __END__
