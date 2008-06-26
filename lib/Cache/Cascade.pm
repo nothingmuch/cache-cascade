@@ -11,6 +11,8 @@ sub _eval {
 	eval $code;
 }
 
+use namespace::clean -except => [qw(meta)];
+
 our $VERSION = "0.03";
 
 has caches => (

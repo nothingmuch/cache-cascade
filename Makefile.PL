@@ -6,7 +6,8 @@ WriteMakefile(
 	'PREREQ_PM'    => {
 		'Mouse' => '0.04',
 		'Squirrel' => 0,
-		'Test::use::ok' => '0'
+		'Test::use::ok' => '0',
+		'namespace::clean' => '0.08',
 	},
 	'INSTALLDIRS' => 'site',
 	'EXE_FILES'   => [],
