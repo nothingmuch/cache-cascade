@@ -1,3 +1,9 @@
+0.04
+	- Remove tt usage, replace with more traditional means (the .pmc keeps
+	  failing)
+	- use Squirrel instead of Moose
+	- use namespace::clean
+
 0.03
 	- Unbreak release
 
