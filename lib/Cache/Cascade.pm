@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 package Cache::Cascade;
-use Moose;
+use Squirrel;
 
 use Carp qw/croak/;
 
@@ -116,7 +116,7 @@ CODE
 	}
 }
 
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__->meta->make_immutable if __PACKAGE__->meta->can("make_immutable");
 
 __PACKAGE__;
 
