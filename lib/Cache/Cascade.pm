@@ -13,7 +13,7 @@ sub _eval {
 
 use namespace::clean -except => [qw(meta)];
 
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 
 has caches => (
 	isa => "ArrayRef",
