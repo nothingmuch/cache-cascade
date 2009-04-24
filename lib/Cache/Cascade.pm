@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 package Cache::Cascade;
-use Squirrel;
+use Any::Moose;
 
 use Carp qw/croak/;
 

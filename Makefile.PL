@@ -5,7 +5,7 @@ WriteMakefile(
 	'VERSION_FROM' => 'lib/Cache/Cascade.pm',
 	'PREREQ_PM'    => {
 		'Mouse' => '0.04',
-		'Squirrel' => 0,
+		'Any::Moose' => 0,
 		'Test::use::ok' => '0',
 		'namespace::clean' => '0.08',
 	},
