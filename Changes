@@ -1,3 +1,6 @@
+0.05
+	- use Any::Moose instead of Squirrel
+
 0.04
 	- Remove tt usage, replace with more traditional means (the .pmc keeps
 	  failing)
